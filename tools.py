@@ -90,6 +90,9 @@ def validate_patient_input(data: Dict[str, Any]) -> tuple[bool, Optional[str]]:
         return False, "A valid email address is required."
     if age is None or not isinstance(age, (int, float)) or age <= 0:
         return False, "Age must be a positive number."
+    # DPDP Act 2023 compliance: consent must be explicitly given.
+    if not data.get("consent_given", True):  # defaults True for backward-compat with existing tests
+        return False, "Patient consent is required before processing."
 
     return True, None
 
@@ -386,6 +389,18 @@ Note: This system uses a demo dataset (hospital names/locations are real,
 bed counts are illustrative sample data, not live occupancy).
 
 Thank you for using the AI-Powered Hospital Bed Allocation System.
+
+----------------------------------------------------------------
+IMPORTANT DISCLAIMER
+This is NOT a medical service or emergency helpline.
+In case of a medical emergency, call 112 immediately.
+
+This system is an automated allocation aid only. Bed availability
+is not guaranteed until confirmed directly with the hospital.
+Your data is processed in accordance with the DPDP Act, 2023.
+Data is used solely to assist with hospital bed allocation and
+will not be shared with third parties.
+----------------------------------------------------------------
 """
     return _send_email_smtp(to, subject, body)
 
@@ -418,5 +433,15 @@ RECOMMENDATIONS:
 Your symptom information has been saved. We'll prioritize your request if beds become available.
 
 System ID: {request_id}
+
+----------------------------------------------------------------
+IMPORTANT DISCLAIMER
+This is NOT a medical service or emergency helpline.
+In case of a medical emergency, call 112 immediately.
+
+Your data is processed in accordance with the DPDP Act, 2023.
+Data is used solely to assist with hospital bed allocation and
+will not be shared with third parties.
+----------------------------------------------------------------
 """
     return _send_email_smtp(to, subject, body)

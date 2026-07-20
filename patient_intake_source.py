@@ -4,7 +4,7 @@ public Google Sheet CSV export and returns them as dicts ready to feed
 into the LangGraph hospital_bed_graph.
 
 The Sheet is the one linked at:
-  https://docs.google.com/spreadsheets/d/1jD70uIx-0MZQAvvAOqrahUG4Uajj1MnMiZlzUJj2V-Y
+  https://docs.google.com/spreadsheets/d/<your-sheet-id>
 
 Expected column layout (Form Responses 1 tab):
   A – Timestamp
@@ -47,7 +47,7 @@ logger = logging.getLogger("hospital_bed_agent.intake")
 # ── Config ────────────────────────────────────────────────────────────────────
 SHEET_ID = os.getenv(
     "SHEET_ID",
-    "1jD70uIx-0MZQAvvAOqrahUG4Uajj1MnMiZlzUJj2V-Y",  # the shared sheet
+    "",  # set SHEET_ID in your .env file
 )
 FORM_RESPONSES_GID = os.getenv("FORM_RESPONSES_GID", "0")
 PROCESSED_ROWS_FILE = os.getenv(
