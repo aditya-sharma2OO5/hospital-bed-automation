@@ -91,18 +91,7 @@ the **first tab** in the spreadsheet. If it isn't:
 
 ## Architecture
 
-```
-patient_intake → ai_triage → validate_triage → hospital_search → check_availability
-                                                                        │
-                                                        ┌───────────────┴───────────────┐
-                                                   beds > 0                        beds == 0
-                                                        │                               │
-                                                  reservation                 no_beds_notification
-                                                        │                               │
-                                                  confirmation                         END
-                                                        │
-                                                       END
-```
+![Hospital Bed Automation Workflow](workflow_diagram.png)
 
 | File | Purpose |
 |---|---|
