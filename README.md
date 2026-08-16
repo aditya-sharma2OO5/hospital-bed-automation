@@ -5,13 +5,6 @@ System" workflow. Classifies patient urgency via Groq, searches a hospital
 database by zone, reserves a bed if one is available, and emails the patient
 — or sends a "no beds available" notification (Path B).
 
-## ⚠️ Security note
-The original spec documents this project was built from contained a
-**live-looking Groq API key hardcoded in plaintext**. That key is not used
-anywhere in this codebase. If it's a real key, rotate it in your Groq
-dashboard immediately — treat it as compromised since it was pasted into a
-shared document.
-
 ## Data source
 Hospital data comes from a **local Excel file** (`data/Delhi_Hospital_Bed_Availability.xlsx`)
 — no Google Sheets or service account needed. The file contains 18 real Delhi
